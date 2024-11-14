@@ -1,0 +1,8 @@
+*.gguf
+*.bin
+*_pycache_*
+*build
+models/*
+!models/README.md
+*/.venv/
+

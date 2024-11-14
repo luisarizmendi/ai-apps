@@ -1,0 +1,22 @@
+BIND_MOUNT_OPTIONS := ro
+OS := $(shell uname -s)
+ifeq ($(OS),Linux)
+    BIND_MOUNT_OPTIONS := Z,ro
+endif
+
+.PHONY: build
+build:
+	podman build --squash-all --build-arg PORT=$(PORT) -t $(IMAGE) . -f base/Containerfile
+
+.PHONY: clean
+clean:
+	- rm ./../../../models/$(MODEL_NAME) &> /dev/null
+
+.PHONY: podman-clean
+podman-clean:
+	@container_ids=$$(podman ps --format "{{.ID}} {{.Image}}" | awk '$$2 == "$(IMAGE)" {print $$1}'); \
+	echo "removing all containers with IMAGE=$(IMAGE)"; \
+    for id in $$container_ids; do \
+        echo "Removing container: $$id,"; \
+        podman rm -f $$id; \
+    done
