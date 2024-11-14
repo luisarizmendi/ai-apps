@@ -8,12 +8,15 @@ import io
 
 # Function to capture and send frames to the model
 def capture_and_send_frame():
-    global is_running  # Flag to control Start/Stop functionality
+    global is_running  
     while is_running:
-        # Reinitialize the VideoCapture object each iteration to ensure a fresh frame
-        cap = cv2.VideoCapture(selected_camera)
+        cap = None
+        while cap is None or not cap.isOpened():
+            cap = cv2.VideoCapture(selected_camera)
+            if not cap.isOpened():  
+                time.sleep(1) 
         ret, frame = cap.read()
-        cap.release()  # Release immediately after capturing the frame
+        cap.release()  
         if not ret:
             break
 

@@ -1,0 +1,9 @@
+FROM registry.access.redhat.com/ubi9/python-311:1-77.1726664316
+WORKDIR /app
+COPY src .
+COPY base/arialbd.ttf /usr/share/fonts/arialbd.ttf
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir --upgrade -r requirements.txt
+RUN fc-cache -f -v
+EXPOSE 8000
+ENTRYPOINT [ "sh", "./run.sh" ]

@@ -25,12 +25,6 @@ You can download a copy of this model into your `models/` with the make command 
 ```bash
  make download-model-facebook-detr-resnet-101
 ```
-or 
-
-```bash
- make download-model-yolov8
-```
-
 or any model with the `download_models` script that you can find in `tools`.
 
 ## Deploy Model Server
@@ -47,20 +41,20 @@ make run
 > It takes some time to start, check the container logs until you see "Started server process"
 
 
-or if you want to run it manually (in this case using the YOLOv8 model):
+or if you want to run it manually:
 
 ```bash
 podman run -it -d -p 8000:8000 \
--v ../../../models/ultralytics/yolov8:/app/models/ultralytics/yolov8:Z,ro \
--e MODEL_PATH=/app/models/ultralytics/yolov8 \
--e MODEL_TYPE=yolo \
--e YOLO_VERSION=yolov8m \
+-v ../../../models/facebook/detr-resnet-101:/app/models/facebook/detr-resnet-101:Z,ro \
+-e MODEL_PATH=/app/models/facebook/detr-resnet-101 \
 $IMAGE
 ```
 
 > **Note:**
-> You have an image ready in `quay.io/luisarizmendi/object_counter:latest`
+> You have an image ready in `quay.io/luisarizmendi/object_counter:detr`
 
+> **Note:**
+> If you don't have the model downloaded, you don't need to mount the directory, the container will download the model (`facebook-detr-resnet-101`) for you, but it will take more time to start...
 
 ## Clean container
 

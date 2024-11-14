@@ -3,17 +3,11 @@ USER root
 RUN dnf install -y python3.11 mesa-libGL fontconfig && \
     dnf clean all && \
     python3.11 -m ensurepip --upgrade
-
 WORKDIR /app
-
 COPY src .
 COPY base/arialbd.ttf /usr/share/fonts/arialbd.ttf
-
 RUN python3.11 -m pip install --upgrade pip && \
     python3.11 -m pip install --no-cache-dir --upgrade -r requirements.txt
-
 RUN fc-cache -f -v
-
 EXPOSE 8000
-
 ENTRYPOINT [ "sh", "./run.sh" ]
