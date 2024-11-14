@@ -53,6 +53,12 @@ $IMAGE
 > **Note:**
 > You have an image ready in `quay.io/luisarizmendi/object_counter:detr`
 
+or just:
+
+```bash
+podman run -it -d -p 8000:8000 $IMAGE
+```
+
 > **Note:**
 > If you don't have the model downloaded, you don't need to mount the directory, the container will download the model (`facebook-detr-resnet-101`) for you, but it will take more time to start...
 
