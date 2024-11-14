@@ -17,7 +17,7 @@ model_name = os.getenv("MODEL_NAME", default="Ultralytics/YOLOv8")
 model_path = os.getenv("MODEL_PATH", default="/app/models/ultralytics/yolov8")
 model_size= "yolov8m"
 
-if not os.path.isfile(f"{model_path}/pytorch_model.bin"):  
+if not os.path.isfile(f"{model_path}/{model_size}.pt"):  
     print("Downloading model")
     snapshot_download(repo_id=model_name,
                     local_dir=f"/tmp/{model_path}",
