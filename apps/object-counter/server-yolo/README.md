@@ -54,11 +54,11 @@ $IMAGE
 
 If you don't have the `YOLO` model of your choose downloaded, you don't need to mount the directory, the container will download the model that you select by configuring the `MODEL_NAME` with the Huggingface model name that you want to use (defaults to `Ultralytics/YOLOv8`). It will take more time to start comparing with a pre-downloaded model (check logs and wait until the download is finised to use the inference service):
 
-```bash
-podman run -it -d -p 8001:8000 -e MODEL_NAME=keremberke/yolov8s-protective-equipment-detection  $IMAGE
-```
-
 You can also choose the model filename/size by configuring the `MODEL_FILE` variable (defaults to `yolov8m.pt`)
+
+```bash
+podman run -it -d -p 8001:8000 -e MODEL_NAME=keremberke/yolov8s-protective-equipment-detection  -e MODEL_FILE=best.pt  $IMAGE
+```
 
 ## Clean container
 

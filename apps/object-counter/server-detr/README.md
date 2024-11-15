@@ -55,6 +55,8 @@ $IMAGE
 
 If you don't have the `DETR` model of your choose downloaded, you don't need to mount the directory, the container will download the model that you select by configuring the `MODEL_NAME` with the Huggingface model name that you want to use (defaults to `facebook-detr-resnet-101`). It will take more time to start comparing with a pre-downloaded model (check logs and wait until the download is finised to use the inference service):
 
+You can also choose the model filename/size by configuring the `MODEL_FILE` variable (defaults to `pytorch_model.bin`)
+
 ```bash
 podman run -it -d -p 8000:8000 -e MODEL_NAME=facebook/detr-resnet-50  $IMAGE
 ```
