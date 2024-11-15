@@ -16,7 +16,7 @@ make build
 
 ## Download Model(s)
 
-You can download models from [huggingface.co](https://huggingface.co/) for this model server. This model server is intended to be used with "DEtection TRansformer" (resnet) models. The default model we've used and validated is `ultralytics/yolov8`.
+You can download models from [huggingface.co](https://huggingface.co/) for this model server. This model server is intended to be used with "DEtection TRansformer" (detr) models. The default model we've used and validated is `ultralytics/yolov8`.
 
 You can download a copy of this model into your `models/` with the make command below. 
 

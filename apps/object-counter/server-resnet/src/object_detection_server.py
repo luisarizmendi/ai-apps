@@ -17,7 +17,7 @@ app = FastAPI()
 model_path = os.getenv("MODEL_PATH", default="/app/models/facebook/detr-resnet-101")
 revision = os.getenv("MODEL_REVISION", default="no_timm")
 
-# Load resnet model
+# Load detr model
 if not os.path.isfile(f"{model_path}/pytorch_model.bin"):  
         model_name = os.getenv("MODEL_NAME", default="facebook/detr-resnet-101")
         print("Downloading model")
@@ -48,7 +48,7 @@ def detection(item: Item):
     bytes_io = io.BytesIO(b64_image)    
     image = Image.open(bytes_io)
 
-    # Detection for resnet
+    # Detection for detr
     inputs = processor(images=image, return_tensors="pt")
     outputs = model(**inputs)
     target_sizes = torch.tensor([image.size[::-1]])
