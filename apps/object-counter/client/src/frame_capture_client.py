@@ -47,14 +47,12 @@ def capture_and_send_frame():
             result_window.image(result_image, use_column_width=True)
         
         # Actualización dinámica de métricas
-        frames_sent_placeholder.markdown(f"**Frames Sent**: {frames_sent}")
-        frames_processed_placeholder.markdown(f"**Inferences Processed**: {frames_processed}")
+        frames_sent_placeholder.markdown(f"**Frames**: {frames_sent}")
         elapsed_time = time.time() - start_time
         avg_fps_sent = frames_sent / elapsed_time
         avg_fps_received = frames_processed / elapsed_time if frames_processed else 0
         avg_inference_time = total_processing_time / frames_processed if frames_processed else 0
-        avg_fps_sent_placeholder.markdown(f"**Avg Sent FPS**: {avg_fps_sent:.2f}")
-        avg_fps_received_placeholder.markdown(f"**Avg Received FPS**: {avg_fps_received:.2f}")
+        avg_fps_sent_placeholder.markdown(f"**Avg FPS**: {avg_fps_sent:.2f}")
         elapsed_time_placeholder.markdown(f"**Elapsed Time**: {elapsed_time:.2f}s")
         avg_inference_time_placeholder.markdown(f"**Avg Inference Time**: {avg_inference_time:.2f}s")
 
@@ -68,7 +66,7 @@ with col_endpoint:
     endpoint = st.text_input("Model Endpoint", "http://0.0.0.0:8000")
 
 headers = {"accept": "application/json", "Content-Type": "application/json"}
-fps = st.slider("Capture Rate (FPS)", min_value=0.01, max_value=24.0, value=0.2, step=0.01)
+fps = st.slider("Capture Rate (FPS)", min_value=0.01, max_value=10.0, value=0.2, step=0.01)
 
 # Placeholder para mostrar resultados
 result_window = st.image([])
@@ -77,16 +75,13 @@ result_window = st.image([])
 stats_container = st.container()
 with stats_container:
     col1, col2 = st.columns(2)
-    frames_sent_placeholder = col1.markdown("**Frames Sent**: 0")
-    frames_processed_placeholder = col2.markdown("**Inferences Processed**: 0")
+    avg_fps_sent_placeholder = col1.markdown("**Avg FPS**: 0.00")
+    frames_sent_placeholder = col2.markdown("**Frames**: 0")
 
     col3, col4 = st.columns(2)
-    avg_fps_sent_placeholder = col3.markdown("**Avg Sent FPS**: 0.00")
-    avg_fps_received_placeholder = col4.markdown("**Avg Received FPS**: 0.00")
+    elapsed_time_placeholder = col3.markdown("**Elapsed Time**: 0.00s")
+    avg_inference_time_placeholder = col4.markdown("**Avg Inference Time**: 0.00s")
 
-    col5, col6 = st.columns(2)
-    elapsed_time_placeholder = col5.markdown("**Elapsed Time**: 0.00s")
-    avg_inference_time_placeholder = col6.markdown("**Avg Inference Time**: 0.00s")
 
 # Botón para iniciar y detener
 if st.button("Start"):
