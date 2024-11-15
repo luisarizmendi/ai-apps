@@ -58,7 +58,7 @@ If you don't have the `YOLO` model of your choose downloaded, you don't need to 
 podman run -it -d -p 8001:8000 -e MODEL_NAME=keremberke/yolov8s-protective-equipment-detection  $IMAGE
 ```
 
-You can also choose the model size by configuring the `MODEL_FILE` variable (defaults to `yolov8m.pt`)
+You can also choose the model filename/size by configuring the `MODEL_FILE` variable (defaults to `yolov8m.pt`)
 
 ## Clean container
 
