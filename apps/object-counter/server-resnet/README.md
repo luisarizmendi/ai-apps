@@ -18,7 +18,7 @@ make build
 
 ## Download Model(s)
 
-You can download models from [huggingface.co](https://huggingface.co/) for this model server. This model server is intended to be used with "DEtection TRansformer" (DETR) models. The default model we've used and validated is [facebook/detr-resnet-101](https://huggingface.co/facebook/detr-resnet-101).
+You can download models from [huggingface.co](https://huggingface.co/) for this model server. This model server is intended to be used with "DEtection TRansformer" (resnet) models. The default model we've used and validated is [facebook/detr-resnet-101](https://huggingface.co/facebook/detr-resnet-101).
 
 You can download a copy of this model into your `models/` with the make command below. 
 
@@ -51,7 +51,7 @@ $IMAGE
 ```
 
 > **Note:**
-> You have an image ready in `quay.io/luisarizmendi/object_counter:detr`
+> You have an image ready in `quay.io/luisarizmendi/object_counter:resnet`
 
 or just:
 

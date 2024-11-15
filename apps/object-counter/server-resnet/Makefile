@@ -1,5 +1,5 @@
 PORT ?= 8000
-IMAGE ?= quay.io/luisarizmendi/object_counter:detr
+IMAGE ?= quay.io/luisarizmendi/object_counter:resnet
 
 MODEL_NAME ?= facebook/detr-resnet-101
 MODELS_DIR := /app/models
