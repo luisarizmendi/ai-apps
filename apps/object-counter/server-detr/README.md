@@ -51,16 +51,13 @@ $IMAGE
 ```
 
 > **Note:**
-> You have an image ready in `quay.io/luisarizmendi/object_counter:detr`
+> You have an image ready to be used in `quay.io/luisarizmendi/object_counter:detr`
 
-or just:
+If you don't have the `DETR` model of your choose downloaded, you don't need to mount the directory, the container will download the model that you select by configuring the `MODEL_NAME` with the Huggingface model name that you want to use (defaults to `facebook-detr-resnet-101`). It will take more time to start comparing with a pre-downloaded model (check logs and wait until the download is finised to use the inference service):
 
 ```bash
-podman run -it -d -p 8000:8000 $IMAGE
+podman run -it -d -p 8000:8000 -e MODEL_NAME=facebook/detr-resnet-50  $IMAGE
 ```
-
-> **Note:**
-> If you don't have the model downloaded, you don't need to mount the directory, the container will download the model (`facebook-detr-resnet-101`) for you, but it will take more time to start...
 
 ## Clean container
 

@@ -49,16 +49,16 @@ $IMAGE
 ```
 
 > **Note:**
-> You have an image ready in `quay.io/luisarizmendi/object_counter:yolo`
+> You have an image ready to be used in `quay.io/luisarizmendi/object_counter:yolo`
 
-or just:
+
+If you don't have the `YOLO` model of your choose downloaded, you don't need to mount the directory, the container will download the model that you select by configuring the `MODEL_NAME` with the Huggingface model name that you want to use (defaults to `Ultralytics/YOLOv8`). It will take more time to start comparing with a pre-downloaded model (check logs and wait until the download is finised to use the inference service):
 
 ```bash
-podman run -it -d -p 8001:8000 $IMAGE
+podman run -it -d -p 8001:8000 -e MODEL_NAME=keremberke/yolov8s-protective-equipment-detection  $IMAGE
 ```
 
-> **Note:**
-> If you don't have the model downloaded, you don't need to mount the directory, the container will download the model (`yolov8`) for you, but it will take more time to start...
+You can also choose the model size by configuring the `MODEL_FILE` variable (defaults to `yolov8m.pt`)
 
 ## Clean container
 

@@ -14,12 +14,14 @@ import logging
 app = FastAPI()
 
 # Model configuration from environment variables
-model_path = os.getenv("MODEL_PATH", default="/app/models/facebook/detr-resnet-101")
+model_name = os.getenv("MODEL_NAME", default="facebook/detr-resnet-101")
+model_path = os.getenv("MODEL_PATH", default=f"/app/models/{model_name.lower()}")
+model_file = os.getenv("MODEL_FILE", default="pytorch_model.bin")
 revision = os.getenv("MODEL_REVISION", default="no_timm")
 
+
 # Load detr model
-if not os.path.isfile(f"{model_path}/pytorch_model.bin"):  
-        model_name = os.getenv("MODEL_NAME", default="facebook/detr-resnet-101")
+if not os.path.isfile(f"{model_path}/{model_file}"):  
         print("Downloading model")
         snapshot_download(repo_id=model_name,
                         revision=revision,

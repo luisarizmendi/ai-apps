@@ -34,6 +34,7 @@ make run
 > **Note:**
 > Defaults to port `8501`
 
+Use the UI to select the IP and port where you want to send your images to perform the object recognition. You can open multiple client UIs sending to different inference endpoints using the same webcam, so you can potentially compare models performance easily.
 
 #### Clean container
 

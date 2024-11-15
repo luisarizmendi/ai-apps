@@ -14,17 +14,18 @@ import os
 app = FastAPI()
 
 model_name = os.getenv("MODEL_NAME", default="Ultralytics/YOLOv8")
-model_path = os.getenv("MODEL_PATH", default="/app/models/ultralytics/yolov8")
-model_size= "yolov8m"
+model_path = os.getenv("MODEL_PATH", default=f"/app/models/{model_name.lower()}")
+model_file = os.getenv("MODEL_FILE", default="yolov8m.pt")
 
-if not os.path.isfile(f"{model_path}/{model_size}.pt"):  
+# Load detr model
+if not os.path.isfile(f"{model_path}/{model_file}"):  
     print("Downloading model")
     snapshot_download(repo_id=model_name,
                     local_dir=f"/tmp/{model_path}",
                     local_dir_use_symlinks=False)
     shutil.copytree(f"/tmp/{model_path}", model_path)
 
-model = YOLO(f"{model_path}/{model_size}.pt")
+model = YOLO(f"{model_path}/{model_file}")
 
 class ImageData(BaseModel):
     image: str
