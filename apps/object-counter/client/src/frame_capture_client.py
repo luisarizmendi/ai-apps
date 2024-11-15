@@ -6,129 +6,93 @@ import time
 from PIL import Image
 import io
 
-# Variables globales
+# Funciones y variables globales
 is_running = False
 frames_sent = 0
-inferences_received = 0
-total_send_time = 0
-total_infer_time = 0
-start_time = 0
+frames_processed = 0
+start_time = None
+total_processing_time = 0
 
-# Function to capture and send frames to the model
+# Función para capturar y enviar el frame
 def capture_and_send_frame():
-    global is_running, frames_sent, inferences_received, total_send_time, total_infer_time, start_time
-    
-    start_time = time.time()  # Start timing
+    global is_running, frames_sent, frames_processed, start_time, total_processing_time
+    if start_time is None:
+        start_time = time.time()
+        
     while is_running:
-        cap = None
-        while cap is None or not cap.isOpened():
-            cap = cv2.VideoCapture(selected_camera)
-            if not cap.isOpened():  
-                time.sleep(1) 
-
+        cap = cv2.VideoCapture(selected_camera)
         ret, frame = cap.read()
         cap.release()
         if not ret:
             break
 
-        # Convert the frame to PIL Image
+        frames_sent += 1
         img = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-
-        # Convert frame to bytes and base64 encoding for model
         bytes_io = io.BytesIO()
         img.save(bytes_io, format="JPEG")
         img_bytes = bytes_io.getvalue()
         b64_image = base64.b64encode(img_bytes).decode('utf-8')
         data = {'image': b64_image}
 
-        # Measure the time taken to send the frame
-        send_start = time.time()
+        request_start = time.time()
         response = requests.post(f'{endpoint}/detection', headers=headers, json=data, verify=False)
-        send_time = time.time() - send_start
-        total_send_time += send_time  # Update total send time
-        frames_sent += 1  # Increment sent frame count
-
-        # Update frames sent in the UI
-        frames_sent_placeholder.write(f"Frames Sent: {frames_sent}")
+        processing_time = time.time() - request_start
+        total_processing_time += processing_time
 
         if response.status_code == 200:
+            frames_processed += 1
             response_json = response.json()
             result_image_b64 = response_json["image"]
             result_image = base64.b64decode(result_image_b64)
             result_window.image(result_image, use_column_width=True)
-            
-            # Measure inference time
-            infer_time = time.time() - send_start
-            total_infer_time += infer_time
-            inferences_received += 1  # Increment received inference count
-            
-            # Update inferences received in the UI
-            inferences_received_placeholder.write(f"Inferences Processed: {inferences_received}")
-
-        time.sleep(1 / fps)  # Wait based on the FPS setting
-
-# Streamlit configuration
-# st.title("Webcam frame capture client")
-
-# Default inputs
-endpoint = "http://0.0.0.0:8000"
-headers = {"accept": "application/json", "Content-Type": "application/json"}
-
-camera_list = []
-for i in range(10):  # Check first 10 devices
-    cap = cv2.VideoCapture(i)
-    if cap.isOpened():
-        camera_list.append(i)
-    cap.release()
-
-# Create layout
-col1, col2 = st.columns(2)
-selected_camera = col1.selectbox("Select Webcam", camera_list)
-endpoint = col2.text_input("Model Endpoint", endpoint)
-
-# Slider for FPS
-fps = st.slider("Capture Rate (FPS)", min_value=0.2, max_value=24.0, value=12.1, step=0.1)
-
-# Placeholders for stats
-frames_sent_placeholder = st.empty()
-inferences_received_placeholder = st.empty()
-
-# Second row for average FPS
-col3, col4 = st.columns(2)
-average_fps_sent_placeholder = col3.empty()
-average_fps_received_placeholder = col4.empty()
-
-# Third row for timing stats
-col5, col6 = st.columns(2)
-elapsed_time_placeholder = col5.empty()
-average_infer_time_placeholder = col6.empty()
-
-# Placeholder for result image
-result_window = st.image([], use_column_width=True)
-
-# Button to start the webcam capture
-if st.button("Start"):
-    is_running = not is_running  
-    if is_running:
-        frames_sent = 0
-        inferences_received = 0
-        total_send_time = 0
-        total_infer_time = 0
-        start_time = time.time()
         
+        # Actualización dinámica de métricas
+        frames_sent_placeholder.markdown(f"**Frames Sent**: {frames_sent}")
+        frames_processed_placeholder.markdown(f"**Inferences Processed**: {frames_processed}")
+        elapsed_time = time.time() - start_time
+        avg_fps_sent = frames_sent / elapsed_time
+        avg_fps_received = frames_processed / elapsed_time if frames_processed else 0
+        avg_inference_time = total_processing_time / frames_processed if frames_processed else 0
+        avg_fps_sent_placeholder.markdown(f"**Avg Sent FPS**: {avg_fps_sent:.2f}")
+        avg_fps_received_placeholder.markdown(f"**Avg Received FPS**: {avg_fps_received:.2f}")
+        elapsed_time_placeholder.markdown(f"**Elapsed Time**: {elapsed_time:.2f}s")
+        avg_inference_time_placeholder.markdown(f"**Avg Inference Time**: {avg_inference_time:.2f}s")
+
+        time.sleep(1 / fps)  # Control de la frecuencia de captura
+
+# Configuración de Streamlit sin título
+col_camera, col_endpoint = st.columns(2)
+with col_camera:
+    selected_camera = st.selectbox("Select Webcam", [i for i in range(10) if cv2.VideoCapture(i).isOpened()])
+with col_endpoint:
+    endpoint = st.text_input("Model Endpoint", "http://0.0.0.0:8000")
+
+headers = {"accept": "application/json", "Content-Type": "application/json"}
+fps = st.slider("Capture Rate (FPS)", min_value=0.01, max_value=24.0, value=0.2, step=0.01)
+
+# Placeholder para mostrar resultados
+result_window = st.image([])
+
+# Placeholders para estadísticas (organizadas en filas y columnas)
+stats_container = st.container()
+with stats_container:
+    col1, col2 = st.columns(2)
+    frames_sent_placeholder = col1.markdown("**Frames Sent**: 0")
+    frames_processed_placeholder = col2.markdown("**Inferences Processed**: 0")
+
+    col3, col4 = st.columns(2)
+    avg_fps_sent_placeholder = col3.markdown("**Avg Sent FPS**: 0.00")
+    avg_fps_received_placeholder = col4.markdown("**Avg Received FPS**: 0.00")
+
+    col5, col6 = st.columns(2)
+    elapsed_time_placeholder = col5.markdown("**Elapsed Time**: 0.00s")
+    avg_inference_time_placeholder = col6.markdown("**Avg Inference Time**: 0.00s")
+
+# Botón para iniciar y detener
+if st.button("Start"):
+    is_running = not is_running
+    if is_running:
+        frames_sent = frames_processed = 0
+        start_time = None
+        total_processing_time = 0
         capture_and_send_frame()
-
-while is_running:
-    elapsed_time = time.time() - start_time
-    avg_fps_sent = frames_sent / elapsed_time if elapsed_time > 0 else 0
-    avg_fps_received = inferences_received / elapsed_time if elapsed_time > 0 else 0
-    avg_infer_time = (total_infer_time / inferences_received) if inferences_received > 0 else 0
-
-    frames_sent_placeholder.write(f"Frames Sent: {frames_sent}")
-    inferences_received_placeholder.write(f"Inferences Processed: {inferences_received}")
-    average_fps_sent_placeholder.write(f"Avg FPS Sent: {avg_fps_sent:.2f}")
-    average_fps_received_placeholder.write(f"Avg FPS Received: {avg_fps_received:.2f}")
-    elapsed_time_placeholder.write(f"Elapsed Time: {elapsed_time:.2f} s")
-    average_infer_time_placeholder.write(f"Avg Inference Time: {avg_infer_time:.2f} s")
-
-    time.sleep(0.1)
