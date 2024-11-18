@@ -75,8 +75,14 @@ def detection(item: Item):
             entity_counts[entity_name] += 1
             box = [round(i, 2) for i in box.tolist()]
             x, y, x2, y2 = tuple(box)
+            
+            # Draw bounding box
             draw.rectangle((x, y, x2, y2), outline="red", width=1)
-            draw.text((x, y), entity_name, fill="red", font=font)
+            
+            # Draw label with confidence
+            label_with_confidence = f"{entity_name} {round(score.item(), 2)}"
+            draw.text((x, y), label_with_confidence, fill="red", font=font)
+            
             label_confidence = f"Detected {entity_name} with confidence {round(score.item(), 3)}"
             scores.append(label_confidence)
         
