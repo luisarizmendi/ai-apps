@@ -54,16 +54,16 @@ def draw_boxes_and_count(image, results):
                 entity_count[class_name] = 1
 
             # Draw the red rectangle around the object
-            cv2.rectangle(image, (x1, y1), (x2, y2), (0, 0, 255), 2)  # Red rectangle
+            cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 0), 2)  
 
-            # Put the class name with white text
+            # Put the class name 
             label = f"{class_name} {confidence:.2f}"
-            cv2.putText(image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)  # White text
+            cv2.putText(image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)  
 
     # Add the entity counts to the top-left corner of the image
     offset = 20  # Space between lines of text
     for class_name, count in entity_count.items():
-        cv2.putText(image, f"{class_name}: {count}", (10, offset), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+        cv2.putText(image, f"{class_name}: {count}", (10, offset), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
         offset += 30  # Move down for the next line
 
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -77,7 +77,7 @@ async def detect_objects(data: ImageData):
         # Decode the incoming image
         img = decode_base64_image(data.image)
 
-        # Perform inference with YOLOv8
+        # Perform inference
         results = model(img)
 
         # Process the results (draw bounding boxes, labels, and entity counts)
