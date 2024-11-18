@@ -1,4 +1,4 @@
-PORT ?= 8001
+PORT ?= 8000
 IMAGE ?= quay.io/luisarizmendi/object_counter:yolo
 
 MODEL_NAME ?= ultralytics/yolov8
