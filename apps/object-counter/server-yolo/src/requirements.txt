@@ -1,10 +1,10 @@
 numpy
-fastapi==0.95.2
-uvicorn==0.22.0
-torch==2.1.0  # Ensure you use the correct version for your CUDA setup, or specify 'cpu' version if needed
-pydantic==2.6.0
-opencv-python-headless==4.7.0.72  # Headless to avoid unnecessary GUI dependencies
-Pillow==9.5.0
-huggingface_hub==0.16.4
-ultralytics==8.0.52
-shutilwhich==1.0.0  # For shutil copytree fallback if needed
+fastapi
+uvicorn
+torch  
+pydantic
+opencv-python-headless  
+Pillow
+huggingface_hub
+ultralytics
+shutilwhich  
