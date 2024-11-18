@@ -18,7 +18,7 @@ model_path = os.getenv("MODEL_PATH", default=f"/app/models/{model_name.lower()}"
 model_file = os.getenv("MODEL_FILE", default="yolov8m.pt")
 
 # Load detr model
-if not os.path.isfile(f"{model_path}/{model_file}"):  
+if not os.path.isfile(f"{model_path}/{model_file}"):
     print("Downloading model")
     snapshot_download(repo_id=model_name,
                     local_dir=f"/tmp/{model_path}",
@@ -66,6 +66,8 @@ def draw_boxes_and_count(image, results):
         cv2.putText(image, f"{class_name}: {count}", (10, offset), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
         offset += 30  # Move down for the next line
 
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
     return image
 
 # Define the /detection endpoint
@@ -90,5 +92,3 @@ async def detect_objects(data: ImageData):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-
-
