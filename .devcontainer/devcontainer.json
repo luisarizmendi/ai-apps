@@ -12,5 +12,14 @@
     "containerEnv": {
         "REGISTRY": "quay.io",
         "IMAGE_NAME": "luisarizmendi/ai-dev"
-    }
+    },
+	"customizations": {
+		"vscode": {
+			"extensions": [
+                "ms-python.python",
+				"ms-python.vscode-pylance",
+                "ms-toolsai.jupyter"
+            ]
+		}
+	}
 }
