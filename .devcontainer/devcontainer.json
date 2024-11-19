@@ -1,0 +1,16 @@
+{  
+    "remoteUser": "root",
+    "containerUser": "root",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,Z",  
+    "name": "ai-dev",
+    "build": {
+        "dockerfile": "Containerfile",
+        "context": ".."
+    },
+    "privileged": true,
+    "containerEnv": {
+        "REGISTRY": "quay.io",
+        "IMAGE_NAME": "luisarizmendi/ai-dev"
+    }
+}
