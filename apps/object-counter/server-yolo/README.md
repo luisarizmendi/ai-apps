@@ -7,7 +7,7 @@ Currently, the server only implements a single endpoint, `/detection`, that expe
 To build the object_detection_python model server image from this directory:
 
 ```bash
-podman build -t object_detection_python . base/Containerfile
+podman build -t object_detection_python . -f base/Containerfile
 ```
 or
 ```bash
