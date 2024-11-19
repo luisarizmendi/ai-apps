@@ -4,6 +4,7 @@
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,Z",  
     "name": "ai-dev",
+	"forwardPorts": [8888],
     "build": {
         "dockerfile": "Containerfile",
         "context": ".."
