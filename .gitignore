@@ -6,3 +6,6 @@ models/*
 !models/README.md
 */.venv/
 *dataset*
+*.pt
+*.bin
+*runs*

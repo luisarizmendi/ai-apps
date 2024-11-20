@@ -6,6 +6,7 @@ COPY .devcontainer/requirements.txt .
 
 RUN dnf install -y python3.11 python3-pip buildah git make mesa-libGL && \
     dnf clean all && \
+    python3 -m pip install --upgrade pip && \
     pip3 install -r requirements.txt 
 
 EXPOSE 8888
