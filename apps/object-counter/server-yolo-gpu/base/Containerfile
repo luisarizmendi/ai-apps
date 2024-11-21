@@ -1,0 +1,27 @@
+FROM nvidia/cuda:12.6.2-runtime-ubi9
+
+ENV PATH=/usr/local/cuda/bin:$PATH \
+    LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+RUN microdnf install -y \
+    python3.11 \
+    python3-pip \
+    libglvnd libglvnd-glx mesa-libGL \
+    libXrender libXext \
+    fontconfig && \
+    microdnf clean all
+
+WORKDIR /app
+
+COPY src .
+COPY base/arialbd.ttf /usr/share/fonts/arialbd.ttf
+
+RUN python3 -m pip install --upgrade pip && \
+    python3 -m pip install --no-cache-dir ultralytics && \
+    python3 -m pip install --no-cache-dir -r requirements.txt
+
+RUN fc-cache -f -v
+
+EXPOSE 8000
+
+ENTRYPOINT ["sh", "./run.sh"]
