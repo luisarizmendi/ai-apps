@@ -3,9 +3,11 @@
 *_pycache_*
 *build
 models/*
-!models/README.md
 */.venv/
 *dataset*
 *.pt
 *.bin
 *runs*
+!models/luisarizmendi/
+!models/luisarizmendi/**
+!models/README.md
