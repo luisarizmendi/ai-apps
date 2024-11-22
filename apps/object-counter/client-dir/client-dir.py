@@ -3,13 +3,13 @@ from ultralytics import YOLO
 from PIL import Image
 import os
 import cv2 
+import torch 
 
 
 def load_model(model_input):
-    """
-    Load the model either from a file or from Hugging Face.
-    """
+    device = "cuda" if torch.cuda.is_available() else "cpu"  
     model = YOLO(model_input)
+    model.to(device)
     return model
 
 def detect_objects_in_files(model_input, files):
@@ -36,6 +36,9 @@ def detect_objects_in_files(model_input, files):
         except Exception as e:
             return f"Error processing file: {file}. Exception: {str(e)}", []
 
+    del model  
+    torch.cuda.empty_cache()
+    
     return "Processing completed.", results_images
 
 interface = gr.Interface(
