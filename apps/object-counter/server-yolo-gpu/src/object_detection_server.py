@@ -56,11 +56,11 @@ def draw_boxes_and_count(image, results):
                 entity_count[class_name] = 1
 
             # Draw the red rectangle around the object
-            cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 0), 2)  
+            cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 0), 1)  
 
             # Put the class name 
             label = f"{class_name} {confidence:.2f}"
-            cv2.putText(image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)  
+            cv2.putText(image, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 1)  
 
     # Add the entity counts to the top-left corner of the image
     offset = 20  # Space between lines of text

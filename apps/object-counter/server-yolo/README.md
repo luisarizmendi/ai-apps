@@ -42,7 +42,7 @@ make run
 or if you want to run it manually:
 
 ```bash
-podman run -it -d -p 8001:8000 \
+podman run -it -d -p 8000:8000 \
 -v ../../../models/ultralytics/yolov8:/app/models/ultralytics/yolov8:Z,ro \
 -e MODEL_PATH=/app/models/ultralytics/yolov8 \
 $IMAGE
@@ -57,7 +57,7 @@ If you don't have the `YOLO` model of your choose downloaded, you don't need to 
 You can also choose the model filename/size by configuring the `MODEL_FILE` variable (defaults to `yolov8m.pt`)
 
 ```bash
-podman run -it -d -p 8001:8000 -e MODEL_NAME=keremberke/yolov8s-protective-equipment-detection  -e MODEL_FILE=best.pt  $IMAGE
+podman run -it -d -p 8000:8000 -e MODEL_NAME=keremberke/yolov8s-protective-equipment-detection  -e MODEL_FILE=best.pt  $IMAGE
 ```
 
 ## Clean container
