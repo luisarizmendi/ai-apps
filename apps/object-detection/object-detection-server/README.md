@@ -18,7 +18,11 @@ Provides the entities detected and the number of each one in that moment
 
 `http://<ip>:5000/detect_image`
 
-Label the uploaded an image. You have an example script using `curl` under the `test` directory.
+Label the uploaded an image. You have an example script using `curl` under the `test` directory:
+
+```bash
+curl -X POST -F "images=@example.jpg" http://localhost:5000/detect_batch > response.json
+```
 
 
 
