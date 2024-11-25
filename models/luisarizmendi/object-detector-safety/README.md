@@ -106,7 +106,7 @@ opencv-python
 torch
 ```
 
-Then [run the python code below ](https://huggingface.co/luisarizmendi/yolo11-safety-equipment/blob/main/run_model.py) and open `http://localhost:7860` in a browser and upload the images to scan.
+Then [run the python code below ](https://huggingface.co/luisarizmendi/yolo11-safety-equipment/blob/main/run_model.py) and open `http://localhost:7860` in a browser to upload and scan the images.
 
 
 ```
