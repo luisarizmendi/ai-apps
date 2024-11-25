@@ -35,14 +35,18 @@ You can [download the model from here](https://github.com/luisarizmendi/ai-apps/
 </div>
 
 
-## Dataset
+## Model Dataset
 
 [https://universe.roboflow.com/luisarizmendi/safety-or-hat/dataset/1](https://universe.roboflow.com/personal-protective-equipment/ppes-kaxsi)
 
 This dataset is based on [this other one that you can find in Roboflow](https://universe.roboflow.com/luisarizmendi/safety-or-hat/dataset/1?ref=roboflow2huggingface)
 
 
-## Hyperparameters
+## Model training
+
+You can [review the Jupyter notebook here](https://github.com/luisarizmendi/ai-apps/blob/main/dev/safety-hat/train.ipynb)
+
+### Hyperparameters
 
 ```
 epochs: 35
@@ -59,7 +63,7 @@ warmup_bias_lr: 0.01
 warmup_momentum: 0.8
 ```
 
-## Augmentation
+### Augmentation
 
 ```
 hsv_h=0.015,  # Image HSV-Hue augmentationc
@@ -77,7 +81,7 @@ mixup=0.0,   # Image mixup
 ```
 
 
-## Usage
+## Model Usage
 
 
 ### Usage with Huggingface spaces
