@@ -39,10 +39,11 @@ sudo podman run -d -p 5000:5000 --privileged <image name>
 > **Note:**
 > You can select the device to be used by setting the environment variable `CAMERA_INDEX`.
 
-
-## Build
-
+If you have a GPU and you want to use it:
 
 ```bash
-podman build -t <image name> .
+sudo podman run -d -p 5000:5000 --device nvidia.com/gpu=all --privileged <image name>
 ```
+
+> **Note:**
+> If you want to run the Container with podman accessing and using the GPUs, be sure that you have installed the `nvidia-container-toolkit` and the NVIDIA drivers in your host and you [configured the Container Device Interface for Podman](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/cdi-support.html)

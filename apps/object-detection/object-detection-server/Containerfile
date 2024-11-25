@@ -1,28 +1,22 @@
-FROM fedora:40
+#FROM nvidia/cuda:12.6.2-cudnn-runtime-ubi9
+FROM registry.access.redhat.com/ubi9/python-39:latest AS base
 
 USER root
 
-RUN dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
-    dnf install -y \
-    python \
+RUN dnf install -y \
+    python3 \
     mesa-libGL \
     mesa-dri-drivers \
     libX11 \
     libXext \
-    ffmpeg \
-    v4l-utils \
     gstreamer1-plugins-base \
-    gstreamer1-plugins-good \
-    libSM \
-    gstreamer1-plugin-openh264 \ 
-    mozilla-openh264 \
     && dnf clean all \
-    && python -m ensurepip --upgrade
+    && python3 -m ensurepip --upgrade
     
 COPY requirements.txt /opt/app-root/src/
 
-RUN python -m pip install --upgrade pip
-RUN python -m pip install -r /opt/app-root/src/requirements.txt
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --no-cache-dir  -r /opt/app-root/src/requirements.txt
 
 COPY . /opt/app-root/src
 
