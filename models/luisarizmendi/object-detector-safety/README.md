@@ -3,7 +3,7 @@
 
 
 <div align="center">
-  <img width="640" alt="luisarizmendi/safety-equipment" src="https://huggingface.co/luisarizmendi/yolo11-safety-equipment/resolve/main/example.png">
+  <img width="640" alt="luisarizmendi/safety-equipment" src="example.png">
 </div>
 
 ## Model binary
