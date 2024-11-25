@@ -8,7 +8,7 @@
 
 ## Model binary
 
-You can [download the model from here](https://github.com/luisarizmendi/ai-apps/raw/refs/heads/main/models/luisarizmendi/object-detector-safety/object-detector-safety-v1.pt))
+You can [download the model from here](https://github.com/luisarizmendi/ai-apps/raw/refs/heads/main/models/luisarizmendi/object-detector-safety/object-detector-safety-v1.pt)
 
 
 ## Labels
