@@ -7,9 +7,13 @@ import torch
 
 
 def load_model(model_input):
-    device = "cuda" if torch.cuda.is_available() else "cpu"  
     model = YOLO(model_input)
-    model.to(device)
+    if torch.cuda.is_available():
+        model.to('cuda') 
+        print("Using GPU for inference")
+    else:
+        print("Using CPU for inference")
+        
     return model
 
 def detect_objects_in_files(model_input, files):

@@ -1,0 +1,1 @@
+podman run -it -p 5000:5000 --device=/dev/video1:/dev/video1 quay.io/luisarizmendi/object-detection-server:latest

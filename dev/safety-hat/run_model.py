@@ -15,9 +15,14 @@ def detect_objects_in_files(files):
     if not files:
         return "No files uploaded.", []
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"  
     model = YOLO("runs/detect/train11/weights/best.pt")
-    model.to(device)
+    
+    if torch.cuda.is_available():
+        model.to('cuda') 
+        print("Using GPU for inference")
+    else:
+        print("Using CPU for inference")
+    
     
     results_images = []
     for file in files:

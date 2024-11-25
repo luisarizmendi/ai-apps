@@ -1,0 +1,36 @@
+FROM fedora:40
+
+USER root
+
+RUN dnf install -y \
+    python \
+    mesa-libGL \
+    mesa-dri-drivers \
+    libX11 \
+    libXext \
+    && dnf clean all \
+    && python -m ensurepip --upgrade
+    
+COPY requirements.txt /opt/app-root/src/
+
+RUN python -m pip install --upgrade pip
+RUN python -m pip install -r /opt/app-root/src/requirements.txt
+
+COPY . /opt/app-root/src
+
+WORKDIR /opt/app-root/src
+
+COPY object-detector-safety-v1.pt /opt/app-root/src/models/object-detector-safety-v1.pt
+
+# To avoid using local permissions for the camera
+#USER 1001
+
+EXPOSE 5000
+
+ENV FLASK_APP=object-detection-server.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=5000
+ENV FLASK_ENV=production
+ENV YOLO_MODEL_PATH=/opt/app-root/src/models/object-detector-safety-v1.pt
+
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
