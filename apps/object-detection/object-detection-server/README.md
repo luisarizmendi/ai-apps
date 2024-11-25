@@ -24,35 +24,13 @@ Label the uploaded an image. You have an example script using `curl` under the `
 
 ## Run
 
-Container will need a port and a video input device.
+Container will need to run with root user as a privileged conatiner to have access to the video input device.
 
 ```bash
-podman run -d -p 5000:5000 --device=/dev/video1:/dev/video1 quay.io/luisarizmendi/object-detection-server:latest
+sudo podman run -d -p 5000:5000 --privileged <image name>
 ```
-
-
-You can also pass all the available devices in your device to the Container by running this script:
-
-```bash
-#!/bin/bash
-
-IMAGE="quay.io/luisarizmendi/object-detection-server:latest"
-PORT=5000
-
-
-CMD="podman run -d -p $PORT:$PORT " 
-
-for device in /dev/video*; do 
-	if [ -e "$device" ]; then 
-		CMD="$CMD --device=$device:$device"
-	fi; 
-done; 
-
-CMD="$CMD $IMAGE"
-
-echo "Running $CMD"
-$($CMD)
-```
+> **Note:**
+> You have a running image in `quay.io/luisarizmendi/object-detection-server:latest`
 
 > **Note:**
 > You can select the device to be used by setting the environment variable `CAMERA_INDEX`.
@@ -62,5 +40,5 @@ $($CMD)
 
 
 ```bash
-podman build -t quay.io/luisarizmendi/object-detection-server:latest .
+podman build -t <image name> .
 ```

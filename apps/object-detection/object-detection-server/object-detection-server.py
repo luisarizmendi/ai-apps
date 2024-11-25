@@ -57,7 +57,6 @@ def process_frame(frame, conf_dict):
                        (0, 255, 0), 
                        2)
 
-    # Update global current_counts
     current_counts = object_counts
     
     return frame, object_counts
