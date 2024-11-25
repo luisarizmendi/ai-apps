@@ -11,3 +11,5 @@ models/*
 !models/luisarizmendi/
 !models/luisarizmendi/**
 !models/README.md
+
+!apps/object-detection/object-detection-server/object-detector-safety-v1.pt
