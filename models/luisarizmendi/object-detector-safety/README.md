@@ -8,7 +8,7 @@
 
 ## Model binary
 
-You can [download the model from here](Since with my Huggingface account I cannot push files greater than 10Mb, [you can download the model from here](https://github.com/luisarizmendi/ai-apps/raw/refs/heads/main/models/luisarizmendi/object-detector-safety/object-detector-safety-v1.pt))
+You can [download the model from here](https://github.com/luisarizmendi/ai-apps/raw/refs/heads/main/models/luisarizmendi/object-detector-safety/object-detector-safety-v1.pt))
 
 
 ## Labels
