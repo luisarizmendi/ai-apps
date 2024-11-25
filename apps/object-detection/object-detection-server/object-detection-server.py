@@ -62,7 +62,7 @@ def process_frame(frame, conf_dict):
     
     return frame, object_counts
 
-@app.route('/detect_batch', methods=['POST'])
+@app.route('/detect_image', methods=['POST'])
 def detect_batch():
     """
     Process a batch of images

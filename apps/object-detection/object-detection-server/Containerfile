@@ -2,12 +2,20 @@ FROM fedora:40
 
 USER root
 
-RUN dnf install -y \
+RUN dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
+    dnf install -y \
     python \
     mesa-libGL \
     mesa-dri-drivers \
     libX11 \
     libXext \
+    ffmpeg \
+    v4l-utils \
+    gstreamer1-plugins-base \
+    gstreamer1-plugins-good \
+    libSM \
+    gstreamer1-plugin-openh264 \ 
+    mozilla-openh264 \
     && dnf clean all \
     && python -m ensurepip --upgrade
     
