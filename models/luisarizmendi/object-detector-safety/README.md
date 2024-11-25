@@ -120,7 +120,7 @@ def detect_objects_in_files(files):
         return "No files uploaded.", []
 
     device = "cuda" if torch.cuda.is_available() else "cpu"  
-    model = YOLO("https://github.com/luisarizmendi/ai-apps/raw/refs/heads/main/models/luisarizmendi/safety-hat/safety-hat-v1.pt")
+    model = YOLO("https://github.com/luisarizmendi/ai-apps/raw/refs/heads/main/models/luisarizmendi/object-detector-safety/object-detector-safety-v1.pt")
     model.to(device)
     
     results_images = []
