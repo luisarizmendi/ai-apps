@@ -106,7 +106,8 @@ opencv-python
 torch
 ```
 
-Then [run this python code](https://huggingface.co/luisarizmendi/yolo11-safety-equipment/blob/main/run_model.py):
+Then [run the python code below ](https://huggingface.co/luisarizmendi/yolo11-safety-equipment/blob/main/run_model.py) and open `http://localhost:7860` in a browser and upload the images to scan.
+
 
 ```
 import gradio as gr
@@ -162,7 +163,6 @@ if __name__ == "__main__":
     interface.launch()
 ```
 
-Finally open `http://localhost:7860` in a browser and upload the images to scan.
 
 
 
