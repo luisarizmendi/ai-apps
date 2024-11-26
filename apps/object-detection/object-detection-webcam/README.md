@@ -9,7 +9,7 @@ You can find more information about the [model in this Huggingface page](https:/
 
 ## Enpoints
 
-`http://<ip>:5000/video_feed`
+`http://<ip>:5000/video_stream`
 
 Provides the labeled stream from the webcam input stream.
 
