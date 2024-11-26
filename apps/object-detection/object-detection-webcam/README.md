@@ -14,7 +14,7 @@ You can find more information about the [model in this Huggingface page](https:/
 Provides the labeled stream from the webcam input stream.
 
 
-`http://<ip>:5000/current_counts`
+`http://<ip>:5000/current_detections`
 
 Provides the entities detected and the number of each one in that moment. This endpoint can be used by external services in order to take actions depending on the objects detected.
 
