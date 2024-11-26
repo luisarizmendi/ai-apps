@@ -1,4 +1,4 @@
-# Object detection server
+# Object detection using Webcam
 
 ## Description
 
