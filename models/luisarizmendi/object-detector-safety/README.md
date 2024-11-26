@@ -37,7 +37,7 @@ You can [download the model from here](https://github.com/luisarizmendi/ai-apps/
 
 ## Model Dataset
 
-[https://universe.roboflow.com/luisarizmendi/safety-or-hat/dataset/1](https://universe.roboflow.com/personal-protective-equipment/ppes-kaxsi)
+[https://universe.roboflow.com/luisarizmendi/safety-or-hat/dataset/1](https://universe.roboflow.com/luisarizmendi/safety-or-hat/dataset/1)
 
 This dataset is based on [this other one that you can find in Roboflow](https://universe.roboflow.com/luisarizmendi/safety-or-hat/dataset/1?ref=roboflow2huggingface)
 
