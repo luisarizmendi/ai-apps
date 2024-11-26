@@ -16,7 +16,7 @@ Provides the labeled stream from the webcam input stream.
 
 `http://<ip>:5000/current_counts`
 
-Provides the entities detected and the number of each one in that moment
+Provides the entities detected and the number of each one in that moment. This endpoint can be used by external services in order to take actions depending on the objects detected.
 
 
 `http://<ip>:5000/detect_image`
