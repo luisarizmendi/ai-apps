@@ -2,7 +2,10 @@
 
 ## Description
 
-Python server that uses a YOLO model to provide object detection on a directly connected webcam stream or a batch file upload providing an output stream with the labeled images and the number of detected objects.
+Python server that uses a YOLO model to provide object detection on a directly connected webcam stream providing an output stream with the labeled images and an additional endpoint with the number of detected objects.
+
+You can find more information about the [model in this Huggingface page](https://huggingface.co/luisarizmendi/yolo11-safety-equipment) but essentially it detects safety equiment. 
+
 
 ## Enpoints
 
@@ -18,7 +21,7 @@ Provides the entities detected and the number of each one in that moment
 
 `http://<ip>:5000/detect_image`
 
-Label the uploaded an image. You have an example script using `curl` under the `test` directory:
+Endpoint that can be used to test image labeling by uploading a specific image. You have an example script using `curl` under the `test` directory:
 
 ```bash
 curl -X POST -F "images=@example.jpg" http://localhost:5000/detect_batch > response.json
@@ -34,7 +37,7 @@ Container will need to run with root user as a privileged conatiner to have acce
 sudo podman run -d -p 5000:5000 --privileged <image name>
 ```
 > **Note:**
-> You have a running image in `quay.io/luisarizmendi/object-detection-server:latest`
+> You have a running image in `quay.io/luisarizmendi/object-detection-webcam:cpu`
 
 > **Note:**
 > You can select the device to be used by setting the environment variable `CAMERA_INDEX`.
