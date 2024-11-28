@@ -25,7 +25,7 @@ You can [download the model from here](https://github.com/luisarizmendi/ai-apps/
 
 
 <div align="center">
-  <img width="640" alt="luisarizmendi/safety-equipment" src="https://huggingface.co/luisarizmendi/hardhat-or-hat/resolve/main/confusion_matrix_normalized.png"> <img width="640" alt="luisarizmendi/safety-equipment" src="https://huggingface.co/luisarizmendi/hardhat-or-hat/resolve/main/results.png">
+  <img width="640" alt="luisarizmendi/safety-equipment" src="confusion_matrix_normalized.png"> <img width="640" alt="luisarizmendi/safety-equipment" src="results.png">
 </div>
 
 
