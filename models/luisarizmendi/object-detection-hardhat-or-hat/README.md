@@ -11,6 +11,11 @@
 You can [download the model from here](https://github.com/luisarizmendi/ai-apps/raw/refs/heads/main/models/luisarizmendi/object-detection-hardhat-or-hat/object-detection-hardhat-or-hat-m.pt)
 
 
+## Huggingface page
+
+https://huggingface.co/luisarizmendi/hardhat-or-hat
+
+
 ## Labels
 
 ```
