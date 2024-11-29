@@ -8,7 +8,7 @@
 
 ## Model binary
 
-You can [download the model from here](https://github.com/luisarizmendi/ai-apps/raw/refs/heads/main/models/luisarizmendi/object-detector-safety/object-detector-safety-v1.pt)
+You can [download the model from here](https://github.com/luisarizmendi/ai-apps/raw/refs/heads/main/models/luisarizmendi/object-detection-hardhat-or-hat/object-detection-hardhat-or-hat-m.pt)
 
 
 ## Labels
@@ -22,6 +22,15 @@ You can [download the model from here](https://github.com/luisarizmendi/ai-apps/
 
 
 ## Model metrics
+
+```
+YOLO11m summary (fused): 303 layers, 20,032,345 parameters, 0 gradients, 67.7 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)
+                   all       1992      15306      0.844      0.847      0.893      0.546
+                   hat        244        287      0.869      0.811      0.876      0.578
+                helmet       1202       3942      0.916      0.892      0.942       0.61
+             no_helmet        741      11077      0.746      0.838      0.861       0.45
+```
 
 
 <div align="center">
