@@ -20,6 +20,9 @@ You can [download the model from here](https://github.com/luisarizmendi/ai-apps/
 ```
 
 
+## Base Model
+
+Ultralytics/YOLO11m
 
 ## Model metrics
 
@@ -119,7 +122,7 @@ import os
 import cv2
 import torch
 
-DEFAULT_MODEL_URL = "https://github.com/luisarizmendi/ai-apps/raw/refs/heads/main/models/luisarizmendi/object-detector-hardhat-or-hat/object-detector-hardhat-or-hat.pt"
+DEFAULT_MODEL_URL = "https://github.com/luisarizmendi/ai-apps/raw/refs/heads/main/models/luisarizmendi/object-detection-hardhat-or-hat/object-detection-hardhat-or-hat-m.pt"
 
 def detect_objects_in_files(model_input, files):
     """
