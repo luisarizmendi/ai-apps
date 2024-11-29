@@ -3,7 +3,7 @@
 
 
 <div align="center">
-  <img width="640" alt="luisarizmendi/safety-equipment" src="example.png">
+  <img width="640" alt="luisarizmendi/hardhat-or-hat" src="example.png">
 </div>
 
 ## Model binary
@@ -37,7 +37,7 @@ YOLO11m summary (fused): 303 layers, 20,032,345 parameters, 0 gradients, 67.7 GF
 
 
 <div align="center">
-  <img width="640" alt="luisarizmendi/safety-equipment" src="confusion_matrix_normalized.png"> <img width="640" alt="luisarizmendi/safety-equipment" src="results.png">
+  <img width="640" alt="luisarizmendi/hardhat-or-hat" src="confusion_matrix_normalized.png"> <img width="640" alt="luisarizmendi/hardhat-or-hat" src="results.png">
 </div>
 
 
