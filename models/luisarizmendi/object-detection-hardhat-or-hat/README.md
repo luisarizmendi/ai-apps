@@ -11,10 +11,19 @@
 You can [download the model from here](https://github.com/luisarizmendi/ai-apps/raw/refs/heads/main/models/luisarizmendi/object-detection-hardhat-or-hat/object-detection-hardhat-or-hat-m.pt)
 
 
+## Base Model
+
+Ultralytics/YOLO11m
+
+
 ## Huggingface page
 
 https://huggingface.co/luisarizmendi/hardhat-or-hat
 
+
+## Model Dataset
+
+[https://universe.roboflow.com/luisarizmendi/hardhat-or-hat](https://universe.roboflow.com/luisarizmendi/hardhat-or-hat)
 
 ## Labels
 
@@ -24,10 +33,6 @@ https://huggingface.co/luisarizmendi/hardhat-or-hat
 - no_helmet
 ```
 
-
-## Base Model
-
-Ultralytics/YOLO11m
 
 ## Model metrics
 
@@ -45,10 +50,6 @@ YOLO11m summary (fused): 303 layers, 20,032,345 parameters, 0 gradients, 67.7 GF
   <img width="640" alt="luisarizmendi/hardhat-or-hat" src="confusion_matrix_normalized.png"> <img width="640" alt="luisarizmendi/hardhat-or-hat" src="results.png">
 </div>
 
-
-## Model Dataset
-
-[https://universe.roboflow.com/luisarizmendi/hardhat-or-hat](https://universe.roboflow.com/luisarizmendi/hardhat-or-hat)
 
 
 ## Model training
