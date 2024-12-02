@@ -15,7 +15,7 @@ def detect_objects_in_files(files):
     if not files:
         return "No files uploaded.", []
 
-    model = YOLO("runs/detect/train11/weights/best.pt")
+    model = YOLO("runs/detect/train3/weights/best.pt")
     
     if torch.cuda.is_available():
         model.to('cuda') 
