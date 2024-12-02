@@ -2,12 +2,12 @@
 
 ## Description
 
-This Flask application provides real-time object detection system using YOLO (You Only Look Once) for computer vision tasks.
+This Flask application provides object detection system using YOLO (You Only Look Once) for computer vision tasks.
 
 
 ## Features
 
-- Real-time object detection using YOLO
+- Object detection using YOLO
 - Webcam streaming with object annotations
 - Batch image processing (for testing)
 - Configurable detection thresholds
@@ -42,7 +42,7 @@ The application supports the following environment variables for configuration:
 ## Endpoints
 
 ### 1. `http://<ip>:5000/video_stream`
-- **Purpose**: Stream real-time webcam with object detection annotations
+- **Purpose**: Stream webcam with object detection annotations
 - **Returns**: Multipart stream with annotated video frames and detection JSON
 
 ### 2. `http://<ip>:5000/current_detections` (GET)
@@ -73,7 +73,7 @@ If you want to run it containerized, you will need to run with root user as a "p
 sudo podman run -d -p 5000:5000 --privileged <image name>
 ```
 > **Note:**
-> You have a running image in `quay.io/luisarizmendi/object-detection-webcam:x86`. It is a big image so it could take time to pull it.
+> You can find an image in `quay.io/luisarizmendi/object-detection-webcam:x86`. It is a big image so it could take time to pull it.
 
 > **Note:**
 > You can select the device to be used by setting the environment variable `CAMERA_INDEX`.

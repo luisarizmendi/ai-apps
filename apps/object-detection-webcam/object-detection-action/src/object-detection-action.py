@@ -129,8 +129,8 @@ def main():
     device_uuid = get_device_uuid()
 
     monitored_classes = {
-        "no_helmet": {"count_threshold": 3},
-        #"hat": {"count_threshold": 3},
+        "no_helmet": {"count_threshold": 0},
+        #"hat": {"count_threshold": 0},
     }
 
     while True:

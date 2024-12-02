@@ -1,4 +1,4 @@
-# Object Detection action service
+# Object detection action service
 
 ## Description
 
@@ -56,10 +56,10 @@ python object_detection_action.py
 You can run it containerized, but it's recommended to make the container use the host network, since the UUID will be based on the MAC address and because the container will need to call the object-detection-server endpoint:
 
 ```bash
-podman run -it --network=host <image name>
+podman run -d --network=host <image name>
 ```
 > **Note:**
-> You can find an image in `quay.io/luisarizmendi/object-detection-action:x86`. 
+> You can find an image in `quay.io/luisarizmendi/object-detection-action:x86`
 
 
 ### Application Configuration
