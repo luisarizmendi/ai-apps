@@ -11,7 +11,7 @@ RUN dnf install -y \
     gstreamer1-plugins-base \
     && dnf clean all \
     && python3 -m ensurepip --upgrade
-    
+
 COPY requirements.txt /opt/app-root/src/
 
 RUN python3 -m pip install --upgrade pip

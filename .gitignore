@@ -12,4 +12,4 @@ models/*
 !models/luisarizmendi/**
 !models/README.md
 
-!apps/object-detection/object-detection-webcam/*.pt
+!apps/object-detection-webcam/object-detection-inference/src/*.pt
