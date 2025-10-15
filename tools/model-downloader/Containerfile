@@ -1,0 +1,7 @@
+FROM quay.io/podman/stable
+
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh && \
+    mkdir -p /models
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

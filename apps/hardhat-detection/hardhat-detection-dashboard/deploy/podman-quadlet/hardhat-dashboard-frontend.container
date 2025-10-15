@@ -1,0 +1,17 @@
+[Unit]
+Description=Object Detection Dashboard Frontend
+Wants=network-online.target
+After=network-online.target
+Requires=hardhat-dashboard-backend.service
+
+[Container]
+Image=quay.io/luisarizmendi/object-detection-dashboard-frontend:v1
+AutoUpdate=registry
+Network=host
+Environment=BACKEND_API_BASE_URL=http://localhost:5005
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

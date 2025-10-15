@@ -1,0 +1,21 @@
+[Unit]
+Description=Object Detection Webcam Stream Manager
+Wants=network-online.target
+After=network-online.target
+
+[Container]
+PodmanArgs=--privileged
+Image=quay.io/luisarizmendi/object-detection-stream-manager:grpc
+AutoUpdate=registry
+Network=host
+Environment=MODEL_NAME=hardhat
+Environment=TRITON_SERVER_URL=localhost:8001
+Environment=CLASS_NAMES=helmet,no_helmet
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
+
+

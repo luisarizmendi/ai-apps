@@ -1,0 +1,22 @@
+FROM node:16
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install \
+    && npm install -D tailwindcss postcss autoprefixer \
+    && npm install express http-proxy-middleware cors
+
+COPY . .
+
+RUN npm run build
+
+COPY server.js /app/server.js
+
+RUN chown -R node /app
+
+USER node
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]
